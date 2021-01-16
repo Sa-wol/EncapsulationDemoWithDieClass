@@ -6,7 +6,9 @@ namespace EncapsulationDemoWithDieClass
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Die die1 = new Die();
+            // Cannot set Value because it's private
+            // die1.Value = 6;
         }
     }
 }
