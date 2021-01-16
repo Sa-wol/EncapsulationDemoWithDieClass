@@ -2,15 +2,20 @@
 namespace EncapsulationDemoWithDieClass
 {
     /// <summary>
-    /// Represents an individual dice
+    /// Represents an individual die
     /// </summary>
     public class Die
     {
-        Random rand;
+        // static fields are shared across all instances of a class
+        static Random rand;
+
+        static Die() // Static constructors are called once for all instances of this class
+        {
+            rand = new Random();
+        }
 
         public Die()
         {
-            rand = new Random();
             Roll(); // Roll die on creation to generate first random number
         }
 
@@ -24,10 +29,15 @@ namespace EncapsulationDemoWithDieClass
         /// <summary>
         /// Roll a new random value between 1 - 6
         /// and return the newly rolled value
+        /// If the die is held, the current value will be returned
+        /// and no new value generated
         /// </summary>
         public byte Roll()
         {
-            Value = (byte)rand.Next(1, 7);
+            if (!IsHeld) // If die is not held
+            {
+                Value = (byte)rand.Next(1, 7);
+            }
             return Value;
         }
     }
